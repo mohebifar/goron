@@ -4,21 +4,21 @@ module.exports = function (grunt) {
   grunt.initConfig({
     babel: {
       options: {
-        sourceMap: true
+        stage: 0
       },
-      lib: {
+      build: {
         files: [{
           expand: true,
           cwd: 'src/',
           src: ['**/*.js', '**/*.jsx'],
-          dest: 'lib'
+          dest: 'build'
         }]
       }
     },
     watch: {
       scripts: {
         files: ['src/**/*.js', 'src/**/*.jsx'],
-        tasks: ['babel:lib'],
+        tasks: ['babel'],
         options: {
           spawn: false
         }
