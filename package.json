@@ -1,0 +1,18 @@
+{
+  "name": "goron",
+  "version": "0.0.1",
+  "main": "./lib/index.js",
+  "devDependencies": {
+    "electron": "^0.4.1",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^5.0.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-electron": "^2.0.0",
+    "load-grunt-tasks": "^3.2.0"
+  },
+  "dependencies": {
+    "material-ui": "^0.11.0",
+    "radium": "^0.13.8",
+    "react": "^0.13.3"
+  }
+}
