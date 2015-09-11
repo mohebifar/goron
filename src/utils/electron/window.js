@@ -28,6 +28,8 @@ class Window {
 
   set(key, value) {
     this.properties[key] = value;
+
+    return this;
   }
 
   create() {
