@@ -1,8 +1,10 @@
 import React from 'react';
 import ipc from 'ipc';
+import { Provider } from 'react-redux';
+import store from './store';
 
 ipc.on('app', (app) => {
-  var path = `./windows/${app}.jsx`;
-  var Window = require(path);
-  React.render(<Window />, document.getElementById('content'));
+  const path = `./windows/${app}.jsx`;
+  const Window = require(path);
+  React.render(<Provider store={store}>{()=><Window />}</Provider>, document.getElementById('content'));
 });
