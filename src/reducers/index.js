@@ -1,3 +1,6 @@
-export default function (state, action) {
-  console.log(state);
-};
+import { combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
+
+export default combineReducers({
+  form
+});
