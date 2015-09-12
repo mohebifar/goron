@@ -1,11 +1,11 @@
 var app = require('app');
-var dialog = require('dialog');
-var Window = require('./utils/electron/window');
+var ConnectionsWindow = require('./windows/new-connection');
 var cr = require('crash-reporter').start();
-var config = require('./config');
+var ipc = require('ipc');
+
 require('crash-reporter').start();
 
-var connectionsWindow = null;
+var newConnectionsWindow = null;
 
 app.on('window-all-closed', function () {
   if (process.platform != 'darwin') {
@@ -14,11 +14,7 @@ app.on('window-all-closed', function () {
 });
 
 app.on('ready', function () {
-  connectionsWindow = new Window('connections');
-  connectionsWindow.create();
-
-  connectionsWindow.window.openDevTools();
-  connectionsWindow.window.on('closed', function () {
-    connectionsWindow = null;
-  });
+  newConnectionsWindow = new ConnectionsWindow('');
+  newConnectionsWindow.create();
+  newConnectionsWindow.window.openDevTools();
 });

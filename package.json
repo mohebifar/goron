@@ -11,10 +11,12 @@
     "load-grunt-tasks": "^3.2.0"
   },
   "dependencies": {
+    "change-case": "^2.3.0",
     "material-ui": "^0.11.0",
     "radium": "^0.13.8",
     "react": "^0.13.3",
     "react-redux": "^2.1.1",
-    "redux": "^2.0.0"
+    "redux": "^2.0.0",
+    "redux-form": "^1.5.3"
   }
 }

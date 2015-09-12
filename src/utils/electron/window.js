@@ -1,18 +1,25 @@
 import config from './../../config';
 import BrowserWindow from 'browser-window';
+import changeCase from 'change-case';
 
 export default
 class Window {
-  constructor(name) {
+  static defaults = {
+    title: 'Goron',
+    width: 640,
+    height: 480,
+    'min-width': 640,
+    'min-height': 480
+  };
+
+  constructor() {
     this.properties = {
-      width: 640,
-      height: 480,
-      'min-width': 640,
-      'min-height': 480
+      ...this.constructor.defaults,
+      ...this.constructor.options
     };
 
     this.window = null;
-    this.name = name;
+    this.name = changeCase.paramCase(this.constructor.name);
     this.setView('main.html');
   }
 
