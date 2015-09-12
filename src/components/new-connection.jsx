@@ -2,9 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Radium from 'radium';
 import {TextField, Tabs, Tab, RaisedButton, IconButton} from 'material-ui';
 import {connectReduxForm} from 'redux-form';
-
-var mui = require('material-ui');
-var ThemeManager = new mui.Styles.ThemeManager();
+import mui from 'material-ui';
 
 @Radium
 @connectReduxForm({
@@ -24,7 +22,7 @@ class Connections extends Component {
 
   getChildContext() {
     return {
-      muiTheme: ThemeManager.getCurrentTheme()
+      muiTheme: themeManager.getCurrentTheme()
     };
   }
 
@@ -76,6 +74,8 @@ class Connections extends Component {
     </Tabs>);
   }
 }
+
+const themeManager = new mui.Styles.ThemeManager();
 
 const styles = {
   wrapper: {
