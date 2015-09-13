@@ -26,7 +26,7 @@ class Window {
   }
 
   setView(view) {
-    this.url = 'file:///' + config.path.views + '/' + view;
+    this.url = `file:///${config.path.views}/${view}`;
 
     if (this.window) {
       this.window.loadUrl(this.url);
