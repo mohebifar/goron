@@ -4,7 +4,7 @@ import {TextField, Tabs, Tab, RaisedButton, IconButton} from 'material-ui';
 import {connectReduxForm} from 'redux-form';
 import mui from 'material-ui';
 
-@Radium()
+@Radium
 @connectReduxForm({
   form: 'contact',
   fields: ['name', 'host', 'port']
