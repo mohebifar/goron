@@ -4,12 +4,11 @@ import {TextField, Tabs, Tab, RaisedButton, IconButton} from 'material-ui';
 import {connectReduxForm} from 'redux-form';
 import mui from 'material-ui';
 
-@Radium
+@Radium()
 @connectReduxForm({
   form: 'contact',
   fields: ['name', 'host', 'port']
 })
-export default
 class Connections extends Component {
   static childContextTypes = {
     muiTheme: PropTypes.object
@@ -43,32 +42,32 @@ class Connections extends Component {
             <TextField
               style={styles.input}
               hintText="New Connection"
-          {...name}
-              floatingLabelText="The connection name" />
+              {...name}
+              floatingLabelText="The connection name"/>
           </div>
 
           <div style={styles.formGroup}>
             <TextField
               style={styles.input}
               hintText="eg. 127.0.0.1"
-          {...host}
-              floatingLabelText="Host" />
+              {...host}
+              floatingLabelText="Host"/>
           </div>
 
           <div style={styles.formGroup}>
             <TextField
               style={styles.input}
               hintText="eg. 27017"
-          {...port}
-              floatingLabelText="Port" />
+              {...port}
+              floatingLabelText="Port"/>
           </div>
-          <RaisedButton label="Create" primary={true} onClick={handleSubmit(this.saveConnection)} />
+          <RaisedButton label="Create" primary={true} onClick={handleSubmit(this.saveConnection)}/>
         </div>
       </Tab>
 
       <Tab label="Authentication">
         <div style={styles.wrapper}>
-          <RaisedButton label="Create" primary={true} onClick={handleSubmit(this.saveConnection)} />
+          <RaisedButton label="Create" primary={true} onClick={handleSubmit(this.saveConnection)}/>
         </div>
       </Tab>
     </Tabs>);
@@ -88,3 +87,5 @@ const styles = {
     width: '100%'
   }
 };
+
+export default Connections;

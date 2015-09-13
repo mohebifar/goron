@@ -2,7 +2,6 @@ import config from './../../config';
 import BrowserWindow from 'browser-window';
 import changeCase from 'change-case';
 
-export default
 class Window {
   static defaults = {
     title: 'Goron',
@@ -13,9 +12,12 @@ class Window {
   };
 
   constructor() {
+    const defaults = this.constructor.defaults;
+    const options = this.constructor.options;
+
     this.properties = {
-      ...this.constructor.defaults,
-      ...this.constructor.options
+      ...defaults,
+      ...options
     };
 
     this.window = null;
@@ -48,3 +50,5 @@ class Window {
     });
   }
 }
+
+export default Window;
