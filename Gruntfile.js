@@ -4,7 +4,16 @@ module.exports = function (grunt) {
   grunt.initConfig({
     babel: {
       options: {
-        stage: 0
+        stage: 0,
+        blacklist: [
+          'es6.constants',
+          'es6.blockScoping',
+          'es6.forOf',
+          'es6.spread',
+          'es6.templateLiterals',
+          'es6.parameters',
+          'es6.arrowFunctions'
+        ]
       },
       build: {
         files: [{
