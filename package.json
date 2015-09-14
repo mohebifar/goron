@@ -13,6 +13,7 @@
   "dependencies": {
     "change-case": "^2.3.0",
     "material-ui": "^0.11.0",
+    "nosql": "^3.0.4",
     "radium": "^0.13.8",
     "react": "^0.13.3",
     "react-redux": "^2.1.1",
