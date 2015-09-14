@@ -1,5 +1,7 @@
 {
   "name": "goron",
+  "description": "A Database management GUI tool made with JavaScript",
+  "repository": "https://github.com/mohebifar/goron",
   "version": "0.0.1",
   "main": "./build/main.js",
   "devDependencies": {
