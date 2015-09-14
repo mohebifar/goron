@@ -14,7 +14,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
-  newConnectionsWindow = new ConnectionsWindow('');
+  newConnectionsWindow = new ConnectionsWindow();
   newConnectionsWindow.create();
   newConnectionsWindow.window.openDevTools();
 });
