@@ -1,4 +1,4 @@
-import config from './../../config';
+import path from 'path';
 import BrowserWindow from 'browser-window';
 import changeCase from 'change-case';
 
@@ -26,7 +26,8 @@ class Window {
   }
 
   setView(view) {
-    this.url = `file:///${config.path.views}/${view}`;
+    const viewsPath = path.join(__dirname, '..', '..', '..', 'res', 'views');
+    this.url = `file:///${viewsPath}/${view}`;
 
     if (this.window) {
       this.window.loadUrl(this.url);
