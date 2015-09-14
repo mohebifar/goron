@@ -4,3 +4,7 @@ body {
     -webkit-user-select: none;
     cursor: default;
 }
+
+* {
+    font-family: "Ubuntu", "Lucida Grande", "Lucida Sans Unicode", "Segoe UI", sans-serif;
+}
