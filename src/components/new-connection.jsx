@@ -1,13 +1,17 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
 import { TextField, Tabs, Tab, RaisedButton, Checkbox } from 'material-ui';
 import { connectReduxForm } from 'redux-form';
 import mui from 'material-ui';
+import connectionRepository from './../repository/connections';
+import validation from './../validation/connection';
+import Error from './../utils/validation/components/error';
 
 @Radium
 @connectReduxForm({
   form: 'contact',
-  fields: ['name', 'host', 'port', 'adminDatabase', 'username', 'password']
+  fields: ['name', 'host', 'port', 'performAuthentication', 'adminDatabase', 'username', 'password'],
+  validate: validation
 }) class Connections extends Component {
   static childContextTypes = {
     muiTheme: PropTypes.object
@@ -28,11 +32,11 @@ import mui from 'material-ui';
   }
 
   saveConnection(connection) {
-    console.log(connection);
+    connectionRepository.createConnection(connection);
   }
 
   render() {
-    const { fields: {name, host, port, adminDatabase, username, password}, handleSubmit } = this.props;
+    const { fields: {name, host, port, performAuthentication, adminDatabase, username, password}, handleSubmit } = this.props;
 
     return (<div>
       <Tabs>
@@ -44,6 +48,7 @@ import mui from 'material-ui';
                 hintText="New Connection"
                 {...name}
                 floatingLabelText="The connection name"/>
+              <Error field={name} />
             </div>
 
             <div style={styles.formGroup}>
@@ -52,6 +57,7 @@ import mui from 'material-ui';
                 hintText="eg. 127.0.0.1"
                 {...host}
                 floatingLabelText="Host"/>
+              <Error field={host} />
             </div>
 
             <div style={styles.formGroup}>
@@ -60,6 +66,7 @@ import mui from 'material-ui';
                 hintText="eg. 27017"
                 {...port}
                 floatingLabelText="Port"/>
+              <Error field={port} />
             </div>
           </div>
         </Tab>
@@ -68,6 +75,7 @@ import mui from 'material-ui';
           <div style={styles.wrapper}>
             <div style={styles.formGroup}>
               <Checkbox
+                {...performAuthentication}
                 label="Perform Authentication"/>
             </div>
 
@@ -111,7 +119,8 @@ const styles = {
     padding: 15
   },
   formGroup: {
-    marginBottom: 10
+    marginBottom: 10,
+    position: 'relative'
   },
   input: {
     width: '100%'
