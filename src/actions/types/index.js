@@ -1,0 +1,6 @@
+const TYPES = {
+  LOAD_CONNECTIONS: Symbol('LOAD_CONNECTIONS'),
+  LIST_CONNECTIONS: Symbol('LIST_CONNECTIONS')
+};
+
+export default TYPES;
