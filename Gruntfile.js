@@ -4,6 +4,7 @@ module.exports = function (grunt) {
   grunt.initConfig({
     babel: {
       options: {
+        sourceMap: true,
         stage: 0,
         blacklist: [
           'es6.constants',
@@ -11,7 +12,6 @@ module.exports = function (grunt) {
           'es6.forOf',
           'es6.spread',
           'es6.templateLiterals',
-          'es6.parameters',
           'es6.arrowFunctions'
         ]
       },
