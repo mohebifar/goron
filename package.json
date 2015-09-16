@@ -3,7 +3,7 @@
   "description": "A Database management GUI tool made with JavaScript",
   "repository": "https://github.com/mohebifar/goron",
   "version": "0.0.1",
-  "main": "./build/main.js",
+  "main": "./lib/main.js",
   "devDependencies": {
     "electron": "^0.4.1",
     "grunt": "^0.4.5",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "change-case": "^2.3.0",
+    "material-design-iconic-font": "^2.1.2",
     "material-ui": "^0.11.0",
     "mkdirp": "^0.5.1",
     "nosql": "^3.0.4",
