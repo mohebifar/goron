@@ -3,9 +3,9 @@ import Radium from 'radium';
 import { TextField, Tabs, Tab, RaisedButton, Checkbox } from 'material-ui';
 import { connectReduxForm } from 'redux-form';
 import mui from 'material-ui';
-import connectionRepository from './../repository/connections';
-import validation from './../validation/connection';
-import Error from './../utils/validation/components/error';
+import connectionRepository from './../../repository/connections';
+import validation from './../../validation/connection';
+import Error from './../../utils/validation/components/error';
 
 @Radium
 @connectReduxForm({
@@ -33,6 +33,7 @@ import Error from './../utils/validation/components/error';
 
   saveConnection(connection) {
     connectionRepository.createConnection(connection);
+    window.close();
   }
 
   render() {
