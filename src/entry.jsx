@@ -6,8 +6,8 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 
 injectTapEventPlugin();
 
-ipc.on('app', (app) => {
-  const path = `./components/${app}.jsx`;
+ipc.on('window-ready', (app) => {
+  const path = `./components/${app}/index.jsx`;
   const Component = require(path);
   React.render(<Provider store={store}>{()=><Component />}</Provider>, document.getElementById('content'));
 });

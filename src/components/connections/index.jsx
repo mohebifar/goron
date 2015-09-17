@@ -1,13 +1,13 @@
+import ipc from 'ipc';
 import React, { Component, PropTypes } from 'react';
 import Radium from 'radium';
-import mui, { List, ListItem, IconMenu, IconButton, RaisedButton, ToolbarSeparator, Toolbar, ToolbarGroup, ToolbarTitle, FontIcon } from 'material-ui';
-import MenuItem from 'material-ui/lib/menus/menu-item.js';
-import MoreIcon from 'material-ui/lib/svg-icons/navigation/more-vert.js';
+import mui, { List, IconButton, RaisedButton, ToolbarSeparator, Toolbar, ToolbarGroup, ToolbarTitle, FontIcon } from 'material-ui';
+import ConnectionItem from './ConnectionItem.jsx';
 import connectionRepository from './../../repository/connections';
 import { connect } from 'react-redux';
 import store from './../../store.js';
 import { loadConnections } from './../../actions/list-connections.js';
-import ipc from 'ipc';
+import { selectConnection } from './../../actions/select-connection.js';
 
 @Radium
 @connect(props) class Connections extends Component {
@@ -27,27 +27,16 @@ import ipc from 'ipc';
     this.loadConnections();
   }
 
-  renderMenu(connection) {
-    const actionsButtonIcon = <IconButton><MoreIcon /></IconButton>;
-    return <IconMenu iconButtonElement={actionsButtonIcon}>
-      <MenuItem primaryText="Edit"/>
-      <MenuItem primaryText="Delete"/>
-    </IconMenu>;
-  }
-
-  renderItem(connection) {
-    const iconMenu = this.renderMenu(connection);
-
-    return <ListItem primaryText={connection.name} rightIconButton={iconMenu}
-                     secondaryText={connection.host + ':' + connection.port}></ListItem>;
-  }
-
   loadConnections() {
     store.dispatch(loadConnections());
   }
 
-  handleNewConnection() {
-    ipc.send('window', 'new-connection');
+  handleNewConnectionClick() {
+    ipc.send('open-window', 'new-connection');
+  }
+
+  handleConnectionClick(connection) {
+    store.dispatch(selectConnection(connection));
   }
 
   render() {
@@ -55,14 +44,16 @@ import ipc from 'ipc';
       <Toolbar>
         <ToolbarGroup key={0} float="left">
           <ToolbarTitle text="Goron"/>
-          <FontIcon onClick={this.loadConnections()} className="zmdi zmdi-refresh"/>
+          <FontIcon onClick={this.loadConnections.bind(this)} className="zmdi zmdi-refresh"/>
           <IconButton linkButton={true}>
           </IconButton>
         </ToolbarGroup>
 
         <ToolbarGroup key={1} float="right">
           <ToolbarSeparator/>
-          <RaisedButton onClick={this.handleNewConnection} style={styles.newConnectionButton} linkButton={true} label="New Connection" secondary={true}>
+          <RaisedButton onClick={this.handleNewConnectionClick.bind(this)} style={styles.newConnectionButton}
+                        linkButton={true}
+                        label="New Connection" secondary={true}>
             <FontIcon style={styles.iconInButton} className="zmdi zmdi-plus"/>
           </RaisedButton>
         </ToolbarGroup>
@@ -71,7 +62,9 @@ import ipc from 'ipc';
       <List>
         {
           this.props.connections.length ?
-            this.props.connections.map((connection) => this.renderItem(connection))
+            this.props.connections.map(connection => <ConnectionItem
+              onClick={this.handleConnectionClick.bind(this, connection)}
+              connection={connection}/>)
             :
             <div className="wrapper">There is no connection :(</div>
         }
@@ -83,11 +76,8 @@ import ipc from 'ipc';
 const themeManager = new mui.Styles.ThemeManager();
 
 const styles = {
-  wrapper: {
-    padding: 15
-  },
   iconInButton: {
-    color: '#000000',
+    color: '#fff',
     verticalAlign: 'middle',
     float: 'left',
     paddingLeft: 12,
