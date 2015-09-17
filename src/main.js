@@ -16,3 +16,12 @@ app.on('ready', () => {
   connectionsWindow.create();
   connectionsWindow.window.openDevTools();
 });
+
+ipc.on('open-window', (event, name) => {
+  const path = `./windows/${name}.js`;
+  const Window = require(path);
+  const window = new Window();
+  window.create();
+
+  event.sender.send('window-opened', name);
+});
