@@ -2,6 +2,8 @@ import path from 'path';
 import BrowserWindow from 'browser-window';
 import changeCase from 'change-case';
 
+const windows = {};
+
 class Window {
   static defaults = {
     title: 'Goron',
@@ -43,11 +45,26 @@ class Window {
   }
 
   create() {
+    if (this.properties.single && windows[this.name] && windows[this.name].length > 0) {
+      windows[this.name][0].window.focus();
+      return;
+    }
+
+    if (!windows[this.name]) {
+      windows[this.name] = [];
+    }
+
+    windows[this.name].push(this);
+
     this.window = new BrowserWindow(this.properties);
     this.window.loadUrl(this.url);
 
     this.window.webContents.on('did-finish-load', () => {
-      this.window.webContents.send('app', this.name);
+      this.window.webContents.send('window-ready', this.name);
+    });
+
+    this.window.on('close', () => {
+      windows[this.name].splice(windows[this.name].indexOf(this), 1);
     });
   }
 }
