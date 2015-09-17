@@ -1,9 +1,12 @@
 import Window from './../utils/electron/window.js';
 
 export default
-class NewConnection extends Window {
+class Main extends Window {
   static options = {
-    title: 'Goron - New Connection',
-    single: true
+    title: 'Goron',
+    single: true,
+    width: 800,
+    height: 600,
+    'min-width': 800
   }
 }
